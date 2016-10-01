@@ -1,0 +1,16 @@
+doctype
+html(ng-app='blogmodule')
+    head
+        title Blog
+        link(rel='stylesheet', href='static/css/style.css')
+        script(src='jquery/dist/jquery.min.js')
+        script(src='angular/angular.min.js')
+        script(src='static/js/blogapp.js')
+
+    body
+        h1#title All the blog posts
+
+        each post in params.posts
+            h3 #{post.blogtitle}
+            p #{post.blogpost}
+            p #{post.date}

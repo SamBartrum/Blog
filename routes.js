@@ -14,4 +14,11 @@ module.exports = function(app){
         res.redirect('/')
     });
 
+    app.get('/blogposts', function(req, res){
+        BlogPost.find(function (err, posts){
+            console.log(posts);
+            res.render(__dirname + '/public/views/blogposts', {params: {posts: posts}});
+        })
+    });
+
 }
