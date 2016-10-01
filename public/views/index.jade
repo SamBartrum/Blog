@@ -11,7 +11,7 @@ html(ng-app='blogmodule')
         h1#title This is our blog
 
         h2 #{params.sam}
-        
+
         form(method="post", action="/savepost")
             div.input
                 input(type="text", name="blogtitle")
@@ -22,4 +22,4 @@ html(ng-app='blogmodule')
                 input(type="submit", value="submit")
 
         div(ng-controller='TestController')
-            {{testMessage}}
+            [[testMessage]]
