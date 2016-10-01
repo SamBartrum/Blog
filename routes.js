@@ -3,7 +3,7 @@ var BlogPost = require('./models/blogpost')
 module.exports = function(app){
 
     app.get('/', function(req, res){
-        res.render(__dirname + '/public/views/index');
+        res.render(__dirname + '/public/views/index', {params: {sam: 'I am sam'}});
     });
 
     app.post('/savepost', function(req, res){

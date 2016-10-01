@@ -9,6 +9,9 @@ html(ng-app='blogmodule')
 
     body
         h1#title This is our blog
+
+        h2 #{params.sam}
+        
         form(method="post", action="/savepost")
             div.input
                 input(type="text", name="blogtitle")
