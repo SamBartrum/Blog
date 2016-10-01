@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
 
 //Include the routes
 require('./routes')(app);

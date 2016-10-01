@@ -2,8 +2,10 @@ doctype
 html
     head
         title Blog
+        link(rel='stylesheet', href='static/style.css')
+
     body
-        h1 This is our blog
+        h1#title This is our blog
         form(method="post", action="/savepost")
             div.input
                 input(type="text", name="blogtitle")
