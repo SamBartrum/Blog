@@ -1,8 +1,11 @@
 doctype
-html
+html(ng-app='blogmodule')
     head
         title Blog
-        link(rel='stylesheet', href='static/style.css')
+        link(rel='stylesheet', href='static/css/style.css')
+        script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+        script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js")
+        script(src='static/js/blogapp.js')
 
     body
         h1#title This is our blog
@@ -14,3 +17,6 @@ html
                 textarea(name="blogpost", cols="40", rows="5")
             div.actions
                 input(type="submit", value="submit")
+
+        div(ng-controller='TestController')
+            {{testMessage}}
