@@ -1,27 +1,26 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const config = require('./config')
 
 //Some app setup
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
-app.set('view engine', 'jade');
+app.set('view engine', config.VIEW_ENGINE);
 
 //Define the static directories
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/node_modules'));
+app.use(express.static(config.STATIC));
+app.use(express.static(config.STATIC_IMPORTS));
 
 //Include the routes
 require('./routes')(app);
 
-const PORT = 3000
-
 // Connect to the mongodDB
-mongoose.connect('mongodb://localhost:27017/Blog')
+mongoose.connect(config.DB_URL)
 const db = mongoose.connection;
 
 
-app.listen(3000, () => {
-    console.log('listening on 3000')
+app.listen(config.SERVER_PORT, () => {
+    console.log('listening on ' + config.SERVER_PORT)
 })
 
