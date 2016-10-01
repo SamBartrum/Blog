@@ -1,0 +1,14 @@
+doctype
+html
+    head
+        title Blog
+    body
+        This is our blog
+        form(method="post", action="/savepost")
+            div.input
+                input(type="text", name="blogtitle")
+            div.input
+                span.label Post
+                textarea(name="blogpost", cols="40", rows="5")
+            div.actions
+                input(type="submit", value="submit")
