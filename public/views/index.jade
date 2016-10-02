@@ -1,27 +1,21 @@
-doctype
-html(ng-app='blogmodule')
-    head
-        title Blog
-        link(rel='stylesheet', href='static/css/style.css')
-        script(src='jquery/dist/jquery.min.js')
-        script(src='angular/angular.min.js')
-        script(src='static/js/blogapp.js')
+extends ./base
 
-    body
-        h1#title This is our blog
+block title
+    title This is our blog
 
-        h2 #{params.sam}
+block content
+    h2 #{params.sam}
 
-        form(method="post", action="/savepost")
-            div.input
-                input(type="text", name="blogtitle")
-            div.input
-                span.label Post
-                textarea(name="blogpost", cols="40", rows="5")
-            div.actions
-                input(type="submit", value="submit")
+    form(method="post", action="/savepost")
+        div.input
+            input(type="text", name="blogtitle")
+        div.input
+            span.label Post
+            textarea(name="blogpost", cols="40", rows="5")
+        div.actions
+            input(class="ui button primary", type="submit", value="submit")
 
-        div(ng-controller='TestController')
-            [[testMessage]]
+    div(ng-controller='TestController')
+        [[testMessage]]
 
-        a(href='/blogposts') See all blog posts
+    a(class="ui primary basic button", href='/blogposts') See all blog posts

@@ -11,6 +11,7 @@ app.set('view engine', config.VIEW_ENGINE);
 //Define the static directories
 app.use(express.static(config.STATIC));
 app.use(express.static(config.STATIC_IMPORTS));
+app.use(express.static(config.SEMANTIC));
 
 //Include the routes
 require('./routes')(app);

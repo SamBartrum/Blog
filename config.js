@@ -7,6 +7,7 @@ module.exports = {
     VIEW_ENGINE: 'jade',
 
     STATIC: __dirname + '/public',
-    STATIC_IMPORTS: __dirname + '/node_modules'
+    STATIC_IMPORTS: __dirname + '/node_modules',
+    SEMANTIC: __dirname + '/semantic'
 
 }

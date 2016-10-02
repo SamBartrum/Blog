@@ -1,19 +1,15 @@
-doctype
-html(ng-app='blogmodule')
-    head
-        title Blog
-        link(rel='stylesheet', href='static/css/style.css')
-        script(src='jquery/dist/jquery.min.js')
-        script(src='angular/angular.min.js')
-        script(src='static/js/blogapp.js')
+extends ./base
 
-    body
-        h1#title All the blog posts
+block title
+    title All Blog posts
 
-        each post in params.posts
-            h3 #{post.blogtitle}
-            p #{post.blogpost}
-            p #{post.date}
-            a(href='/deletepost/' + post._id) Delete
-        br
-        a(href='/') Back to the home page
+block content
+    h1#title All the blog posts
+
+    each post in params.posts
+        h3 #{post.blogtitle}
+        p #{post.blogpost}
+        p #{post.date}
+        a(href='/deletepost/' + post._id) Delete
+    br
+    a(class="ui button", href='/') Back to the home page
