@@ -20,4 +20,10 @@ module.exports = function(app){
         })
     });
 
+    app.get('/deletepost/:id', function(req, res){
+        BlogPost.remove({_id: req.params.id}, function(err){
+            res.redirect('/blogposts')
+        })
+    });
+
 }
