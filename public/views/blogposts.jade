@@ -4,12 +4,13 @@ block title
     title All Blog posts
 
 block content
-    h1#title All the blog posts
+    h1(class="ui center aligned header") All the blog posts
+    a(class="ui button", href='/', id='homelink') Back to the home page
+    div(class="ui text container")
+        each post in params.posts
+            div(class="ui segment")
+                h3 #{post.blogtitle}
+                p #{post.blogpost}
+                p #{post.date}
+                a(href='/deletepost/' + post._id) Delete
 
-    each post in params.posts
-        h3 #{post.blogtitle}
-        p #{post.blogpost}
-        p #{post.date}
-        a(href='/deletepost/' + post._id) Delete
-    br
-    a(class="ui button", href='/') Back to the home page
