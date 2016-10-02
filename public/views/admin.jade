@@ -1,0 +1,22 @@
+extends ./base
+
+block title
+    title This is our blog
+
+block content
+    center
+        h2 Welcome to the admin page
+    br
+    center
+        form(class="ui form", method="post", action="/savepost")
+            div(class="ui input")
+                input(type="text", name="blogtitle", placeholder="Blog post title")
+            br
+            div(class="field")
+                textarea(name="blogpost", cols="40", rows="5", placeholder="Blog post")
+            br
+            div(class="ui input")
+                input(class="ui button primary", type="submit", value="submit")
+
+        div(ng-controller='TestController') [[testMessage]]
+

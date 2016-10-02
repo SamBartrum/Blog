@@ -2,8 +2,8 @@ var BlogPost = require('./models/blogpost')
 
 module.exports = function(app){
 
-    app.get('/', function(req, res){
-        res.render(__dirname + '/public/views/index', {params: {sam: 'I am sam'}});
+    app.get('/admin', function(req, res){
+        res.render(__dirname + '/public/views/admin', {params: {sam: 'I am sam'}});
     });
 
     app.post('/savepost', function(req, res){
@@ -14,15 +14,15 @@ module.exports = function(app){
         res.redirect('/')
     });
 
-    app.get('/blogposts', function(req, res){
+    app.get('/', function(req, res){
         BlogPost.find({}).sort([['date', -1]]).exec(function (err, posts){
-            res.render(__dirname + '/public/views/blogposts', {params: {posts: posts}});
+            res.render(__dirname + '/public/views/index', {params: {posts: posts}});
         })
     });
 
     app.get('/deletepost/:id', function(req, res){
         BlogPost.remove({_id: req.params.id}, function(err){
-            res.redirect('/blogposts')
+            res.redirect('/index')
         })
     });
 

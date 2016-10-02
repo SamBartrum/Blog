@@ -13,12 +13,40 @@ html(ng-app='blogmodule')
 
 
     body
+
+        //- Menu and button
+        .ui.left.vertical.inverted.labeled.icon.sidebar.menu
+            a(class='item', href='/')
+                i(class='home icon')
+                |             Home
+            a(class='item', href='/admin')
+                i(class='blind icon')
+                |             Admin
+            a(class='item', href='/nonefound:(')
+                i.smile.icon
+                |             Friends
+        .ui.black.huge.launch.right.attached.button
+            i.content.icon
+                span.text(style='display:none; margin-left:20px;')
+                    | Menu
+
+
         br
-        #content
+        #content.ui.container
             block content
 
         block footer
-            div(class='ui divider')
-
+            .ui.divider
             footer(class='pagefoot')
                 span A fun wee project
+
+    //- This script handles the menu button
+    script.
+        $(".launch.button").mouseenter(function(){
+            $(this).stop().animate({width: '130px'}, 300, function(){$(this).find('.text').show();}); })
+            .mouseleave(function (event){
+                $(this).find('.text').hide();
+                $(this).stop().animate({width: '50px'}, 300);
+            });
+        $(".ui.sidebar").sidebar()
+                .sidebar('attach events','.ui.launch.button');
