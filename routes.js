@@ -7,7 +7,7 @@ module.exports = function(app){
     });
 
     app.post('/savepost', function(req, res){
-        today = new Date('2014-01-22T14:56:59.301Z')
+        today = new Date()
         req.body.date = today
         var newPerson = new BlogPost(req.body)
         newPerson.save()
