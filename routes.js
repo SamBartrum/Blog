@@ -15,8 +15,7 @@ module.exports = function(app){
     });
 
     app.get('/blogposts', function(req, res){
-        BlogPost.find(function (err, posts){
-            console.log(posts);
+        BlogPost.find({}).sort([['date', -1]]).exec(function (err, posts){
             res.render(__dirname + '/public/views/blogposts', {params: {posts: posts}});
         })
     });
