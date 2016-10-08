@@ -25,4 +25,4 @@ blogmodule.controller('TestController', ['$scope', function($scope) {
 }]);
 
 var x = 2;
-var sam = 2;
+var sam=2;

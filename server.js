@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const config = require('./config')
+var path = require('path');
 
 //Some app setup
 const app = express()
@@ -10,8 +11,11 @@ app.set('view engine', config.VIEW_ENGINE);
 
 //Define the static directories
 app.use(express.static(config.STATIC));
-app.use(express.static(config.STATIC_IMPORTS));
-app.use(express.static(config.SEMANTIC));
+
+//Stuff we are importing - ship only what we need
+app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, 'angular/')));
+app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, 'jquery/dist/')));
+app.use('/static2', express.static(config.SEMANTIC));
 
 //Include the routes
 require('./routes')(app);

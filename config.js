@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
 
     DB_URL: 'mongodb://localhost:27017/Blog',
@@ -6,8 +8,8 @@ module.exports = {
 
     VIEW_ENGINE: 'jade',
 
-    STATIC: __dirname + '/public',
-    STATIC_IMPORTS: __dirname + '/node_modules',
-    SEMANTIC: __dirname + '/semantic'
+    STATIC: path.join(__dirname, 'public'),
+    STATIC_IMPORTS: path.join(__dirname, 'node_modules'),
+    SEMANTIC: path.join(__dirname, 'semantic/dist')
 
 }
