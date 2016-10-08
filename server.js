@@ -20,12 +20,13 @@ app.use('/static2', express.static(config.SEMANTIC));
 //Include the routes
 require('./routes')(app);
 
-// Connect to the mongodDB
-mongoose.connect(config.DB_URL)
+// Connect to the mongodDB - note app.settings.env defaults to development
+mongoose.connect(config.DB_URL[app.settings.env])
 const db = mongoose.connection;
 
 
-app.listen(config.SERVER_PORT, () => {
+var server = app.listen(config.SERVER_PORT, () => {
     console.log('listening on ' + config.SERVER_PORT)
 })
 
+module.exports = server;

@@ -2,7 +2,9 @@ var path = require('path');
 
 module.exports = {
 
-    DB_URL: 'mongodb://localhost:27017/Blog',
+    DB_URL: {development: 'mongodb://localhost:27017/Blog',
+             test: 'mongodb://localhost:27017/Blog-test'},
+
     SERVER_PORT: 3000,
 
 

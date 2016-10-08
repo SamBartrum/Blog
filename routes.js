@@ -9,12 +9,12 @@ module.exports = function(app){
     app.post('/savepost', function(req, res){
         today = new Date()
         req.body.date = today
-        var newPerson = new BlogPost(req.body)
-        newPerson.save()
-        res.redirect('/')
+        var newPost = new BlogPost(req.body)
+        newPost.save()
+        res.redirect('/posts')
     });
 
-    app.get('/', function(req, res){
+    app.get('/posts', function(req, res){
         BlogPost.find({}).sort([['date', -1]]).exec(function (err, posts){
             res.render(__dirname + '/public/views/index', {params: {posts: posts}});
         })
