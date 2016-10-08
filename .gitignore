@@ -1,5 +1,6 @@
 node_modules
 .idea
-*.css
+public/static/css/*.css
+public/static/js/*.js
 semantic
 semantic.json
