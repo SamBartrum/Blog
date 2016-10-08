@@ -1,0 +1,14 @@
+extends ./base
+
+block title
+    title All Blog posts
+
+block content
+    each post in params.posts
+        div(class="ui segment")
+            h3 !{post.blogtitle}
+            p !{post.blogpost}
+            p !{post.date}
+            a(href='deletepost/' + post._id) Delete
+            a(href='post/' + post._id) View
+

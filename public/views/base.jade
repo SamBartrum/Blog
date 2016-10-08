@@ -1,12 +1,13 @@
 doctype
 html(ng-app='blogmodule')
     head
-        link(rel='stylesheet', href='static/css/style.css')
-        link(rel="stylesheet" type="text/css" href="static2/semantic.min.css")
-        script(src='static2/jquery.min.js')
-        script(src="static2/semantic.min.js")
-        script(src='static2/angular.min.js')
-        script(src='static/js/blog.min.js')
+        link(rel='stylesheet' href='/static/css/style.css')
+        link(rel='stylesheet' type='text/css' href='/static2/semantic.min.css')
+        script(src='/static2/jquery.min.js')
+        script(src='/static2/semantic.min.js')
+        script(src='/static2/angular.min.js')
+        script(src='/static/js/blog.min.js')
+        script(src='/static/js/blog.min.js')
 
         block title
             title The title
@@ -14,39 +15,20 @@ html(ng-app='blogmodule')
 
     body
 
-        //- Menu and button
-        .ui.left.vertical.inverted.labeled.icon.sidebar.menu
-            a(class='item', href='/')
-                i(class='home icon')
-                |             Home
-            a(class='item', href='/admin')
-                i(class='blind icon')
-                |             Admin
-            a(class='item', href='/nonefound:(')
-                i.smile.icon
-                |             Friends
-        .ui.black.huge.launch.right.attached.button
-            i.content.icon
-                span.text(style='display:none; margin-left:20px;')
-                    | Menu
+        div(class="ui fixed inverted menu navbar")
+            div(class="ui center aligned container")
+                a(href="/" class="header item" id="BlogTitle") Semi ignorant bloggings
+                div(class="right menu")
+                    div(class="ui simple dropdown item" ) Menu
+                        i(class="dropdown icon")
+                        div(class="menu")
+                          a(class="item" href="/newpost") Create a new post
+                          a(class="item" href="#") Non blog things
 
-
-        br
-        #content.ui.container
+        div(class="ui text container segment", id='mainpanel')
             block content
 
-        block footer
-            .ui.divider
-            footer(class='pagefoot')
-                span A fun wee project
 
-    //- This script handles the menu button
-    script.
-        $(".launch.button").mouseenter(function(){
-            $(this).stop().animate({width: '130px'}, 300, function(){$(this).find('.text').show();}); })
-            .mouseleave(function (event){
-                $(this).find('.text').hide();
-                $(this).stop().animate({width: '50px'}, 300);
-            });
-        $(".ui.sidebar").sidebar()
-                .sidebar('attach events','.ui.launch.button');
+
+
+        block footer
