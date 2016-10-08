@@ -5,7 +5,7 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
 
-var sassinput = './static-dev/scss/**/*.scss'
+var sassinput = './static-dev/sass/**/*.sass'
 var cssoutput = './public/static/css/'
 var jsinput = './static-dev/js/**/*.js'
 var jsoutput = './public/static/js'
@@ -41,12 +41,14 @@ gulp.task('uglify', function () {
 });
 
 //Uglifies js and preprocesses the sass on the fly
-gulp.task('watch', function(){
+gulp.task('watchsass', function(){
     gulp.watch(sassinput, ['sass']);
+});
+
+gulp.task('watchjs', function(){
     gulp.watch(jsinput, ['uglify']);
 });
 
 
-gulp.task('default', ['uglify', 'sass'], function() {
-    return gulp.watch(sassinput, ['sass']);
-});
+
+gulp.task('default', ['uglify', 'sass', 'watchsass', 'watchjs'])
