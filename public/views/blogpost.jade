@@ -8,5 +8,5 @@ block content
         h3 !{params.post.blogtitle}
         p !{params.post.blogpost}
         p !{params.post.date}
-        a(href='/deletepost/' + params.post.shortid) Delete
+        a(onclick="$('.ui.modal').modal('show')") Delete
 

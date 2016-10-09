@@ -1,5 +1,6 @@
 extends ./base
 
+
 block title
     title All Blog posts
 
@@ -10,5 +11,4 @@ block content
                 a(href='post/' + post.shortid) !{post.blogtitle}
             p !{post.blogpost}
             p !{post.date}
-            a(href='deletepost/' + post.shortid) Delete
-
+            a(onclick="$('.ui.modal').modal('show')") Delete

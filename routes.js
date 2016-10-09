@@ -9,8 +9,6 @@ module.exports = function(app){
         })
     });
 
-
-
     app.get('/admin', function(req, res){
         res.render(__dirname + '/public/views/admin', {params: {sam: 'I am sam'}});
     });
