@@ -59,8 +59,6 @@ module.exports = function(app){
     })
 
     app.post('/upload', uploading.single('media'), function(req, res, next){
-        console.log(req.body) // form fields
-        console.log(req.file) // form files
         res.status(204).end()
     });
 
