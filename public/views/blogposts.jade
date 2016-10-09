@@ -7,8 +7,8 @@ block content
     each post in params.posts
         div(class="ui segment")
             h3
-                a(href='post/' + post._id) !{post.blogtitle}
+                a(href='post/' + post.shortid) !{post.blogtitle}
             p !{post.blogpost}
             p !{post.date}
-            a(href='deletepost/' + post._id) Delete
+            a(href='deletepost/' + post.shortid) Delete
 

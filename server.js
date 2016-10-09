@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+mongoose.Promise = require('bluebird');
 const config = require('./config')
 var path = require('path');
 

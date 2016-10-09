@@ -4,7 +4,7 @@ module.exports = function(app){
 
 //    Main entrance page - has snippets of all the previous blog posts on
     app.get('/', function(req, res){
-        BlogPost.find({}).sort([['date', -1]]).exec(function (err, posts){
+        BlogPost.find({}).sort([['updatedAt', -1]]).exec(function (err, posts){
             res.render(__dirname + '/public/views/blogposts', {params: {posts: posts}});
         })
     });
@@ -16,7 +16,7 @@ module.exports = function(app){
     });
 
     app.get('/post/:id', function(req, res){
-        BlogPost.findOne({_id: req.params.id}).exec(function (err, post){
+        BlogPost.findOne({shortid: req.params.shortid}).exec(function (err, post){
             res.render(__dirname + '/public/views/blogpost', {params: {post: post}});
         })
     });
@@ -30,15 +30,16 @@ module.exports = function(app){
         req.body.date = today
         var newPost = new BlogPost(req.body)
         newPost.save()
+        res.redirect('/')
     });
 
-    app.post('/updatepost/:id', function(req, res){
-        BlogPost.update({_id: req.param.id},
+    app.post('/updatepost/:shortid', function(req, res){
+        BlogPost.update({shortid: req.param.shortid},
                         {blogtitle: req.params.blogtitle, blogpost: req.params.blogpost})
     });
 
-    app.get('/deletepost/:id', function(req, res){
-        BlogPost.remove({_id: req.params.id}, function(err){
+    app.get('/deletepost/:shortid', function(req, res){
+        BlogPost.remove({shortid: req.params.shortid}, function(err){
             res.redirect('/')
         })
     });
