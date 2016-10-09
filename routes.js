@@ -15,7 +15,7 @@ module.exports = function(app){
         res.render(__dirname + '/public/views/admin', {params: {sam: 'I am sam'}});
     });
 
-    app.get('/post/:id', function(req, res){
+    app.get('/post/:shortid', function(req, res){
         BlogPost.findOne({shortid: req.params.shortid}).exec(function (err, post){
             res.render(__dirname + '/public/views/blogpost', {params: {post: post}});
         })
