@@ -25,7 +25,6 @@ require('./routes')(app);
 mongoose.connect(config.DB_URL[app.settings.env])
 const db = mongoose.connection;
 
-
 var server = app.listen(config.SERVER_PORT, () => {
     console.log('listening on ' + config.SERVER_PORT)
 })

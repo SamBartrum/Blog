@@ -1,4 +1,5 @@
 var BlogPost = require('./models/blogpost')
+const multer = require('multer')
 
 module.exports = function(app){
 
@@ -40,6 +41,28 @@ module.exports = function(app){
         BlogPost.remove({shortid: req.params.shortid}, function(err){
             res.redirect('/')
         })
+    });
+
+    // Media uploads
+
+    var storage = multer.diskStorage(
+       {
+           destination: __dirname + '/public/static/uploads/',
+           filename: function ( req, file, cb ) {
+               //req.body is empty... here is where req.body.new_file_name doesn't exists
+               cb( null, file.originalname );
+           }
+       });
+
+
+    const uploading = multer({
+        storage: storage,
+    })
+
+    app.post('/upload', uploading.single('media'), function(req, res, next){
+        console.log(req.body) // form fields
+        console.log(req.file) // form files
+        res.status(204).end()
     });
 
 }
