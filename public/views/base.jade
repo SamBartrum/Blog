@@ -1,19 +1,18 @@
 doctype
-html(ng-app='blogmodule')
+html
     head
         link(rel='stylesheet' href='/static/css/style.css')
         link(rel='stylesheet' type='text/css' href='/static2/semantic.min.css')
         script(src='/static2/jquery.min.js')
         script(src='/static2/semantic.min.js')
         script(src='/static2/angular.min.js')
-        script(src='/static/js/blog.min.js')
-        script(src='/static/js/blog.min.js')
+        script(src='/static/js/blog.js')
 
         block title
             title The title
 
 
-    body
+    body(ng-app='blogmodule')
 
         div(class="ui fixed inverted menu navbar")
             div(class="ui center aligned container")
@@ -34,20 +33,20 @@ html(ng-app='blogmodule')
         block footer
 
 
-  div(class="ui basic modal")
-    i(class="close icon")
-    div(class="header")
-        Delete blog post
-    div(class="image content")
-        div(class="description")
-            p Are you sure you want to delete this blog post?
+    div(class="ui basic modal")
+        i(class="close icon")
+        div(class="header")
+            Delete blog post
+        div(class="image content")
+            div(class="description")
+                p Are you sure you want to delete this blog post?
 
-    div(class="actions")
-        div(class="two fluid ui inverted buttons")
-            div(class="ui cancel red basic inverted button")
-                i(class="remove icon")
+        div(class="actions")
+            div(class="two fluid ui inverted buttons")
+                div(class="ui cancel red basic inverted button")
+                    i(class="remove icon")
 
-            div(class="ui ok green basic inverted button")
-                i(class="checkmark icon")
+                div(class="ui ok green basic inverted button")
+                    i(class="checkmark icon")
 
 

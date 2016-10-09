@@ -27,9 +27,9 @@ module.exports = function(app){
     app.post('/savepost', function(req, res){
         today = new Date()
         req.body.date = today
+        console.log(req.body);
         var newPost = new BlogPost(req.body)
-        newPost.save()
-        res.redirect('/')
+        return newPost.save()
     });
 
     app.post('/updatepost/:shortid', function(req, res){
