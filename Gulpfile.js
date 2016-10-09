@@ -36,7 +36,9 @@ gulp.task('uglify', function () {
         .pipe(concat('blog.js'))
         .pipe(gulp.dest(jsoutput))
         .pipe(rename('blog.min.js'))
-        .pipe(uglify())
+        .pipe(uglify().on('error', function(e){
+            console.log(e);
+            }))
         .pipe(gulp.dest(jsoutput))
 });
 
