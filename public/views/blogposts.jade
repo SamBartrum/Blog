@@ -5,10 +5,14 @@ block title
     title All Blog posts
 
 block content
-    each post in params.posts
-        div(class="ui segment")
-            h3
-                a(href='post/' + post.shortid) !{post.blogtitle}
-            p !{post.blogpost}
-            p !{post.date}
-            a(onclick="$('.ui.modal').modal('show')") Delete
+
+    div(ng-controller="blogpostsController as bpC", ng-init="bpC.getBlogPosts()")
+
+        div(ng-repeat="post in blogposts")
+            [[post.blogtitle]]
+            [[post.blogpost]]
+            [[post.shortid]]
+            a(ng-click="bpC.deletePost(post.shortid)") Delete
+            a(ng-click="bpC.getPost(post.shortid)") View
+
+

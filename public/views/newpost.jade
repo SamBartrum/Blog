@@ -5,7 +5,7 @@ block title
 
 block content
 
-    div(ng-controller="newblogpostController as nbpCtrl")
+    div(ng-controller="newpostController as npCtrl")
 
         center
             h2 Create a new blog post
@@ -14,13 +14,13 @@ block content
             div(class="ui form")
 
                 div(class="field")
-                    input(type="text", name="blogtitle", placeholder="Blog post title", ng-model="nbpCtrl.newblogtitle")
+                    input(type="text", name="blogtitle", placeholder="Blog post title", ng-model="npCtrl.newblogtitle")
 
                 div(class="field")
-                    textarea(name="blogpost", cols="40", rows="30", placeholder="Blog post", ng-model="nbpCtrl.newblogpost")
+                    textarea(name="blogpost", cols="40", rows="30", placeholder="Blog post", ng-model="npCtrl.newblogpost")
             br
             div(class="ui input")
-                button(class="ui button primary", ng-click="nbpCtrl.savenewpost()") Submit
+                button(class="ui button primary", ng-click="npCtrl.saveBlogPost()") Submit
 
 
             form(action="/upload", method="post" enctype="multipart/form-data")

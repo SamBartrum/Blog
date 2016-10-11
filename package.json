@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-resource": "^1.5.8",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",

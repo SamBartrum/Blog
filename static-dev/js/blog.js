@@ -1,4 +1,4 @@
-var blogmodule = angular.module('blogmodule', []);
+var blogmodule = angular.module('blogmodule', ['ngResource']);
 
 //Change the interpolation symbol to make it obviously distinct from any other template rendering
 blogmodule.config(function($interpolateProvider) {
@@ -6,19 +6,58 @@ blogmodule.config(function($interpolateProvider) {
   $interpolateProvider.endSymbol(']]');
 });
 
-blogmodule.controller('newblogpostController', ['$scope', '$http', function($scope, $http) {
 
-    this.newblogpost = '';
-    this.newblogposttitle = '';
+//Create a resource for the blog posts which can get injected into controllers
+blogmodule.factory('PostResource', ['$resource', function($resource) {
+    return $resource('/post/:shortid', null);
+}]);
 
-    this.savenewpost = function(){
-         var data = $.param({json: JSON.stringify({blogtitle: this.newblogposttitle, blogpost: this.newblogpost})});
-         console.log(data);
-         $http.post("/savepost", data).success(function(data, status) {
-            $('#successModal').modal('show');
-        })
+
+blogmodule.controller('blogpostsController', ['$scope', '$http', 'PostResource', function($scope, $http, PostResource) {
+
+    var that = this;
+
+    $scope.blogposts = [];
+    that.selectedpost = null;
+
+    that.getBlogPosts = function(){
+        PostResource.get().$promise.then(function(data) {
+            $scope.blogposts = data.posts;
+        });
+    };
+
+    that.deletePost = function(id){
+        PostResource.delete({shortid: id}).$promise.then(function(data){
+            that.getBlogPosts();
+        });
+    };
+
+    that.getPost = function(id){
+        PostResource.get({shortid: id}).$promise.then(function(data){
+            console.log(data);
+        });
     };
 
 
 }]);
+
+
+blogmodule.controller('newpostController', ['$scope', '$http', 'PostResource', function($scope, $http, PostResource) {
+
+    var that = this;
+
+    that.newblogpost = '';
+    that.newblogtitle = '';
+
+    that.saveBlogPost = function(){
+        var data = {blogtitle: that.newblogtitle, blogpost: that.newblogpost};
+        var savePost = new PostResource(data);
+        savePost.$save(function(data) {
+            console.log(data)
+        });
+    };
+}]);
+
+
+
 
