@@ -23,10 +23,10 @@ block content
                 button(class="ui button primary", ng-click="npCtrl.saveBlogPost()") Submit
 
 
-            form(action="/upload", method="post" enctype="multipart/form-data")
-                | Upload media
-                input(type="file", name="media")
-                input(type="submit", value="Upload media")
+            br
+            form(action="/upload", method="post", enctype="multipart/form-data")
+                input(type="file", name="media", class="ui")
+                button(type="submit", class="ui button") Upload media
 
 
     div(class="ui basic modal", id="successModal")
