@@ -1,15 +1,42 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-mongoose.Promise = require('bluebird');
-const config = require('./config')
-var path = require('path');
+const express = require('express');
+      bodyParser = require('body-parser');
+      mongoose = require('mongoose');
+      path = require('path');
+      csrf = require('csurf');
+      session = require('express-session');
+      cookieParser = require('cookie-parser');
+      MongoStore = require('connect-mongo')(session);
+      config = require('./config');
 
-//Some app setup
+// Some app setup
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json());
 app.set('view engine', config.VIEW_ENGINE);
+
+// Connect to the mongodDB - note app.settings.env defaults to development
+mongoose.connect(config.DB_URL[app.settings.env])
+mongoose.Promise = require('bluebird');
+const db = mongoose.connection;
+
+// Set up the cookies and sessions
+app.use(cookieParser());
+app.use(session({
+    secret: 'thisisonebigsecret',
+    name: 'BlogCookie',
+    store: new MongoStore({mongooseConnection: db}),
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
+
+// CSRF protection
+app.use(csrf());
+app.use(function(req, res, next){
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.locals.csrftoken = req.csrfToken();
+    next();
+});
 
 //Define the static directories
 app.use(express.static(config.STATIC));
@@ -23,9 +50,6 @@ app.use('/static2', express.static(config.SEMANTIC));
 //Include the routes
 require('./routes/routes')(app);
 
-// Connect to the mongodDB - note app.settings.env defaults to development
-mongoose.connect(config.DB_URL[app.settings.env])
-const db = mongoose.connection;
 
 var server = app.listen(config.SERVER_PORT, () => {
     console.log('listening on ' + config.SERVER_PORT)

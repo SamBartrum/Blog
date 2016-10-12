@@ -40,11 +40,10 @@ blogmodule.controller('newpostController', ['$scope', '$http', 'PostResource', f
 
     var that = this;
 
-    that.newblogpost = '';
-    that.newblogtitle = '';
+    that.newblogpost = {blogtitle:'', blogpost:''};
 
     that.saveBlogPost = function(){
-        var data = {blogtitle: that.newblogtitle, blogpost: that.newblogpost};
+        var data = that.newblogpost;
         var savePost = new PostResource(data);
         savePost.$save(function(data) {
             console.log(data)

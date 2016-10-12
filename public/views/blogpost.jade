@@ -6,7 +6,7 @@ block title
 block content
     div(ng-controller="blogpostController as bpCtrl", ng-init="bpCtrl.getBlogPost()")
 
-         center
+         center(ng-cloak)
             h2 [[ bpCtrl.blogpost.blogtitle ]]
             br
             p [[bpCtrl.blogpost.blogpost ]]

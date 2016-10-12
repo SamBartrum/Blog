@@ -8,7 +8,7 @@ block content
 
     div(ng-controller="blogpostsController as bpC", ng-init="bpC.getBlogPosts()")
 
-        div(ng-repeat="post in blogposts", class="ui segment")
+        div(ng-repeat="post in blogposts", class="ui segment", ng-cloak)
             h3 [[post.blogtitle]]
             div [[post.blogpost]]
             br

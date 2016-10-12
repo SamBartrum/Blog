@@ -14,10 +14,10 @@ block content
             div(class="ui form")
 
                 div(class="field")
-                    input(type="text", name="blogtitle", placeholder="Blog post title", ng-model="npCtrl.newblogtitle")
+                    input(type="text", name="blogtitle", placeholder="Blog post title", ng-model="npCtrl.newblogpost.blogtitle")
 
                 div(class="field")
-                    textarea(name="blogpost", cols="40", rows="30", placeholder="Blog post", ng-model="npCtrl.newblogpost")
+                    textarea(name="blogpost", cols="40", rows="30", placeholder="Blog post", ng-model="npCtrl.newblogpost.blogpost")
             br
             div(class="ui input")
                 button(class="ui button primary", ng-click="npCtrl.saveBlogPost()") Submit
