@@ -32,12 +32,6 @@ blogmodule.controller('blogpostsController', ['$scope', '$http', 'PostResource',
         });
     };
 
-    that.getPost = function(id){
-        PostResource.get({shortid: id}).$promise.then(function(data){
-            console.log(data);
-        });
-    };
-
 
 }]);
 
@@ -56,6 +50,31 @@ blogmodule.controller('newpostController', ['$scope', '$http', 'PostResource', f
             console.log(data)
         });
     };
+}]);
+
+blogmodule.controller('blogpostController', ['$scope', '$http', 'PostResource', function($scope, $http, PostResource) {
+
+    var that = this;
+
+    that.blogpost = {};
+
+    that.getShortId = function(){
+        var url = window.location.href;
+        return url.split('/').pop();
+    };
+
+    that.getBlogPost = function(){
+        var data = {shortid: that.getShortId()};
+        PostResource.get(data).$promise.then(function(response){
+            // TODO: return this an element not an array.
+            returned = response.post[0]
+            that.blogpost = {blogtitle: returned.blogtitle, blogpost: returned.blogpost,
+                             shortid: returned.shortid};
+            console.log(that.blogpost);
+        });
+    };
+
+
 }]);
 
 

@@ -4,9 +4,10 @@ block title
     title All Blog posts
 
 block content
-    div(class="ui segment")
-        h3 !{params.post.blogtitle}
-        p !{params.post.blogpost}
-        p !{params.post.date}
-        a(onclick="$('.ui.modal').modal('show')") Delete
+    div(ng-controller="blogpostController as bpCtrl", ng-init="bpCtrl.getBlogPost()")
 
+         center
+            h2 [[ bpCtrl.blogpost.blogtitle ]]
+            br
+            p [[bpCtrl.blogpost.blogpost ]]
+            p [[bpCtrl.blogpost.createdAt]]

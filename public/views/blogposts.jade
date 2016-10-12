@@ -12,9 +12,9 @@ block content
             h3 [[post.blogtitle]]
             div [[post.blogpost]]
             br
-            div
+            p
                 div(class="ui red button mini", ng-click="bpC.deletePost(post.shortid)") Delete
-                div(class="ui green button mini", ng-click="bpC.getPost(post.shortid)") View
+                a(class="ui green button mini", ng-href="viewpost/[[post.shortid]]") View
             br
 
 

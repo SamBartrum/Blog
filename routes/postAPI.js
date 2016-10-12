@@ -9,7 +9,7 @@ module.exports = {
             },
 
      post: function(req, res){
-                BlogPost.find({shortid: req.shortid}).exec(function (err, post){
+                BlogPost.find({shortid: req.params.shortid}).exec(function (err, post){
                     res.json({post: post});
                 });
             },
