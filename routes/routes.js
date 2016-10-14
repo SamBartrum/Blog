@@ -1,9 +1,8 @@
-var BlogPost = require('../models/blogpost')
 const postAPI = require('./postAPI');
-const uploads = require('./uploads');
+      uploads = require('./uploads');
+      login = require('./userAPI');
 
 const templates = '../public/views'
-
 
 module.exports = function(app){
 
@@ -28,6 +27,9 @@ module.exports = function(app){
     app.delete('/post/:shortid', postAPI.deletePost);
     app.get('/post', postAPI.posts);
     app.post('/post', postAPI.createPost);
+
+
+    app.post('/login', login.login);
 
     // Upload endpoint
     app.post('/upload', uploads.uploadFile.options, uploads.uploadFile.method);

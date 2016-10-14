@@ -46,8 +46,8 @@ blogmodule.controller('newpostController', ['$scope', '$http', 'PostResource', f
         var data = that.newblogpost;
         var savePost = new PostResource(data);
         savePost.$save(function(data) {
-            console.log(data)
         });
+        window.location.href = '/';
     };
 }]);
 
@@ -67,15 +67,13 @@ blogmodule.controller('blogpostController', ['$scope', '$http', 'PostResource', 
         PostResource.get(data).$promise.then(function(response){
             // TODO: return this an element not an array.
             returned = response.post[0]
-            that.blogpost = {blogtitle: returned.blogtitle, blogpost: returned.blogpost,
-                             shortid: returned.shortid};
-            console.log(that.blogpost);
+            that.blogpost = returned;
         });
     };
 
 
 }]);
 
-
+blogmodule.filter('')
 
 

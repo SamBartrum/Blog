@@ -2,7 +2,7 @@ extends ./base
 
 
 block title
-    title All Blog posts
+    title Login
 
 block content
 
@@ -10,7 +10,6 @@ block content
 
         div(ng-repeat="post in blogposts", class="ui segment", ng-cloak)
             h3 [[post.blogtitle]]
-            p [[post.updatedAt|date:'short']]
             div [[post.blogpost]]
             br
             p

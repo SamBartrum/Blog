@@ -1,12 +1,14 @@
 const express = require('express');
       bodyParser = require('body-parser');
       mongoose = require('mongoose');
+      mongoose.Promise = require('bluebird');
       path = require('path');
       csrf = require('csurf');
       session = require('express-session');
       cookieParser = require('cookie-parser');
       MongoStore = require('connect-mongo')(session);
       config = require('./config');
+
 
 // Some app setup
 const app = express()
@@ -16,7 +18,6 @@ app.set('view engine', config.VIEW_ENGINE);
 
 // Connect to the mongodDB - note app.settings.env defaults to development
 mongoose.connect(config.DB_URL[app.settings.env])
-mongoose.Promise = require('bluebird');
 const db = mongoose.connection;
 
 // Set up the cookies and sessions
@@ -37,6 +38,7 @@ app.use(function(req, res, next){
     res.locals.csrftoken = req.csrfToken();
     next();
 });
+
 
 //Define the static directories
 app.use(express.static(config.STATIC));
