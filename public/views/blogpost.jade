@@ -1,13 +1,7 @@
-extends ./base
+div(ng-init="bpostC.getBlogPost()")
 
-block title
-    title All Blog posts
-
-block content
-    div(ng-controller="blogpostController as bpCtrl", ng-init="bpCtrl.getBlogPost()")
-
-         center(ng-cloak)
-            h2 [[ bpCtrl.blogpost.blogtitle ]]
-            p [[ bpCtrl.blogpost.updatedAt ]]
-            br
-         p [[ bpCtrl.blogpost.blogpost ]]
+     center(ng-cloak)
+        h2 [[ bpostC.blogpost.blogtitle ]]
+        p [[ bpostC.blogpost.updatedAt|date:'short' ]]
+        br
+     p [[ bpostC.blogpost.blogpost ]]

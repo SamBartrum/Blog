@@ -46,6 +46,7 @@ app.use(express.static(config.STATIC));
 //Stuff we are importing - ship only what we need
 app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, 'angular/')));
 app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, 'angular-resource/')));
+app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, 'angular-route/')));
 app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, 'jquery/dist/')));
 app.use('/static2', express.static(config.SEMANTIC));
 

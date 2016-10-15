@@ -3,13 +3,12 @@ User = require('../models/users')
 exports = {}
 
 exports.login = function(req, res){
-                    User.find({username: 'sam' , password: 'password' }).exec(function(err, user){
+                    User.findOne({username: req.body.username , password: req.body.password}).exec(function(err, user){
                         if(!user){
                             res.json({'message': 'Login details not recognised'});
                         }
                         else{
-//                          TODO: sort out authentication here
-                            console.log('greate')
+                            res.json({'message':'In you come'});
                         }
                     });
                  };

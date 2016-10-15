@@ -1,29 +1,19 @@
-var blogmodule = angular.module('blogmodule', ['ngResource']);
-
-//Change the interpolation symbol to make it obviously distinct from any other template rendering
-blogmodule.config(function($interpolateProvider) {
-  $interpolateProvider.startSymbol('[[');
-  $interpolateProvider.endSymbol(']]');
-});
-
-
-//Create a resource for the blog posts which can get injected into controllers
-blogmodule.factory('PostResource', ['$resource', function($resource) {
-    return $resource('/post/:shortid', null);
-}]);
-
-
 blogmodule.controller('blogpostsController', ['$scope', '$http', 'PostResource', function($scope, $http, PostResource) {
 
     var that = this;
 
-    $scope.blogposts = [];
+    that.blogposts = [];
     that.selectedpost = null;
 
     that.getBlogPosts = function(){
         PostResource.get().$promise.then(function(data) {
-            $scope.blogposts = data.posts;
+            that.blogposts = data.posts;
         });
+    };
+
+    that.viewPost = function(shortid){
+        window.location.href = '#/blogpost/'+ shortid;
+
     };
 
     that.selected = function(postid){
@@ -37,9 +27,7 @@ blogmodule.controller('blogpostsController', ['$scope', '$http', 'PostResource',
         });
     };
 
-
 }]);
-
 
 blogmodule.controller('newpostController', ['$scope', '$http', 'PostResource', function($scope, $http, PostResource) {
 
@@ -79,6 +67,15 @@ blogmodule.controller('blogpostController', ['$scope', '$http', 'PostResource', 
 
 }]);
 
-blogmodule.filter('')
+blogmodule.controller('loginController', ['$scope', 'LoginResource', function($scope, LoginResource){
+    var that = this;
 
+    that.login = {username: '', password: ''};
 
+    that.authenticate = function(){
+        LoginResource.save(that.login).$promise.then(function(response){
+            console.log(response);
+        });
+    };
+
+}]);

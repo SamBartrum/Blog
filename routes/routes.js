@@ -6,16 +6,14 @@ const templates = '../public/views'
 
 module.exports = function(app){
 
+    // Because we are using Jade any templates need to be rendered server side
+    app.get('/template/:name', function(req, res) {
+        var name = req.params.name;
+        res.render(templates + '/' + name);
+    });
+
     app.get('/', function(req, res){
-        res.render(templates + '/blogposts');
-    });
-
-    app.get('/admin', function(req, res){
-        res.render(templates + '/admin');
-    });
-
-    app.get('/newpost', function(req, res){
-        res.render(templates + '/newpost');
+        res.render(templates + '/base');
     });
 
     app.get('/viewpost/:shortid', function(req, res){
