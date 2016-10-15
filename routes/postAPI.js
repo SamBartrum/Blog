@@ -23,9 +23,9 @@ module.exports = {
 
      deletePost: function(req, res){
                     shortid = req.params.shortid
-                    BlogPost.find({shortid: shortid}).remove().exec(
+                    BlogPost.find({shortid: shortid}).remove().exec(function(err, post){
                         res.json({'success': 'Your post has been deleted'})
-                    )
-     }
+                    });
+                 }
 
 }

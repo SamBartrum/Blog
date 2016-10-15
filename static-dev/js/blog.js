@@ -26,8 +26,13 @@ blogmodule.controller('blogpostsController', ['$scope', '$http', 'PostResource',
         });
     };
 
-    that.deletePost = function(id){
-        PostResource.delete({shortid: id}).$promise.then(function(data){
+    that.selected = function(postid){
+        that.selectedpost = postid;
+        $('.deletePostModal').modal('show');
+    };
+
+    that.deletePost = function(){
+        PostResource.delete({shortid: that.selectedpost}).$promise.then(function(data){
             that.getBlogPosts();
         });
     };

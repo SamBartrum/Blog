@@ -14,8 +14,23 @@ block content
             div [[post.blogpost]]
             br
             p
-                div(class="ui red button mini", ng-click="bpC.deletePost(post.shortid)") Delete
+                div(class="ui red button mini", ng-click="bpC.selected(post.shortid)") Delete
                 a(class="ui green button mini", ng-href="viewpost/[[post.shortid]]") View
             br
 
 
+        div(class="ui basic modal deletePostModal")
+            i(class="close icon")
+            div(class="header")
+                Delete blog post
+            div(class="image content")
+                div(class="description")
+                    p Are you sure you want to delete this blog post?
+
+            div(class="actions")
+                div(class="two fluid ui inverted buttons")
+                    div(class="ui cancel red basic inverted button")
+                        i(class="remove icon")
+
+                    div(class="ui ok green basic inverted button" ng-click="bpC.deletePost(post.shortid)")
+                        i(class="checkmark icon")
