@@ -17,12 +17,16 @@ html
     body(ng-app='blogmodule')
 
         div(class="wrapper", id="wrapper")
-            div(class="ui fixed inverted menu navbar")
+
+            div(class="ui fixed inverted menu navbar", id="header")
                 div(class="ui center aligned container")
                     a(href="#/" class="header item" id="BlogTitle") Semi ignorant bloggings
                     div(class="right menu")
                         i(class="dropdown icon")
-                        span(class="item" onclick="$('#loginModal').modal('show')") Login
+                        if session.user
+                            a(class="item" href="/logout") Logout
+                        else
+                            a(class="item" onclick="$('#loginModal').modal('show')") Login
                         div(class="ui simple dropdown item" ) Menu
                             i(class="dropdown icon")
                             div(class="menu")
@@ -36,15 +40,21 @@ html
                 div(class="ui small modal", id="loginModal" ng-controller="loginController as logC")
                     i(class="close icon")
                     div(class="header")
-                        p Login!
-                    div(class="image content")
+                        p Enter your login details
+                    div(class="content")
+
+                        div(class="ui negative message" id="loginMessage" ng-show="logC.loggedIn==false")
+                            i(class="close icon", ng-click="logC.closeMessage()")
+                            div(class="header")
+                                p Woops, check your login details!
+
                         div(class="ui form")
                             div(class="field")
                                 input(type="text", name="username", placeholder="Username", ng-model="logC.login.username")
                             div(class="field")
                                 input(type="text", name="password", placeholder="Password", ng-model="logC.login.password")
 
-                            button(class="ui button", ng-click="logC.authenticate()") Log in
+                            button(class="ui green button", ng-click="logC.authenticate()" ng-disabled="logC.validate()") Log in
 
 
             div(class="ui inverted footer segment", id="footer", style="position:absolute; bottom:0;")

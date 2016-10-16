@@ -4,6 +4,16 @@ const postAPI = require('./postAPI');
 
 const templates = '../public/views'
 
+// Check whether user is loged in or not - protect the endpoints
+function requireLogin(req, res, next) {
+  if (!req.user) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+};
+
+
 module.exports = function(app){
 
     // The base path
@@ -20,17 +30,18 @@ module.exports = function(app){
 
     // The blog post api endpoints
     app.get('/post/:shortid', postAPI.getPost);
-    app.delete('/post/:shortid', postAPI.deletePost);
+    app.delete('/post/:shortid', requireLogin, postAPI.deletePost);
     app.get('/post', postAPI.getPosts);
-    app.post('/post', postAPI.createPost);
+    app.post('/post', requireLogin, postAPI.createPost);
 
 
     // User api endpoints
     app.post('/login', userAPI.login);
-    app.delete('/user/:username', userAPI.deleteUser);
-    app.get('/user/:username', userAPI.getUser);
-    app.post('/user', userAPI.newUser);
-    app.get('/user', userAPI.users);
+    app.get('/logout', userAPI.logout);
+    app.delete('/user/:username', requireLogin, userAPI.deleteUser);
+    app.get('/user/:username', requireLogin, userAPI.getUser);
+    app.post('/user', requireLogin, userAPI.newUser);
+    app.get('/user', requireLogin, userAPI.users);
 
 
     // Upload endpoint

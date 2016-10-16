@@ -6,12 +6,19 @@ exports = {}
 exports.login = function(req, res){
                     User.findOne({username: req.body.username , password: req.body.password}).exec(function(err, user){
                         if(!user){
-                            res.json({'message': 'Login details not recognised'});
+                            res.json({success: false});
                         }
                         else{
-                            res.json({'message':'In you come'});
+                            req.session.user = {username: user.username, admin: user.admin};
+                            res.json({success: true});
                         }
                     });
+};
+
+// Logout - reset session and redirect to home page
+exports.logout = function(req, res){
+                    req.session.destroy();
+                    res.redirect('/');
 };
 
 exports.users = function(req, res){

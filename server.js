@@ -36,9 +36,9 @@ app.use(csrf());
 app.use(function(req, res, next){
     res.cookie('XSRF-TOKEN', req.csrfToken());
     res.locals.csrftoken = req.csrfToken();
+    res.locals.session = req.session;
     next();
 });
-
 
 //Define the static directories
 app.use(express.static(config.STATIC));

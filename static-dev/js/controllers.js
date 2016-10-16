@@ -71,11 +71,29 @@ blogmodule.controller('loginController', ['$scope', 'LoginResource', function($s
     var that = this;
 
     that.login = {username: '', password: ''};
+    that.loggedIn = null;
 
     that.authenticate = function(){
         LoginResource.save(that.login).$promise.then(function(response){
             console.log(response);
+            if(response.success){
+                location.reload();
+            }
+            else{
+                that.loggedIn = false;
+            }
         });
+    };
+
+    that.validate = function(){
+        if(!that.login.username.trim() || !that.login.password.trim()){
+            return true;
+        }
+        return false;
+    };
+
+    that.closeMessage = function(){
+        that.loggedIn = null;
     };
 
 }]);

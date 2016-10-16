@@ -6,8 +6,9 @@ div(ng-init="bpC.getBlogPosts()")
         div [[post.blogpost]]
         br
         p
-            div(class="ui red button mini", ng-click="bpC.selected(post.shortid)") Delete
-            a(class="ui green button mini", ng-click="bpC.viewPost(post.shortid)") View
+            button(class="ui green button mini", ng-click="bpC.viewPost(post.shortid)") View
+            if session.user
+                button(class="ui red button mini", ng-click="bpC.selected(post.shortid)") Delete
         br
 
     div(class="ui basic modal deletePostModal")
@@ -20,8 +21,8 @@ div(ng-init="bpC.getBlogPosts()")
 
         div(class="actions")
             div(class="two fluid ui inverted buttons")
+                div(class="ui ok green basic inverted button" ng-click="bpC.deletePost(post.shortid)")
+                    i(class="checkmark icon")
                 div(class="ui cancel red basic inverted button")
                     i(class="remove icon")
 
-                div(class="ui ok green basic inverted button" ng-click="bpC.deletePost(post.shortid)")
-                    i(class="checkmark icon")
