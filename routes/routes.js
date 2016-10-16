@@ -40,8 +40,8 @@ module.exports = function(app){
     app.get('/logout', userAPI.logout);
     app.delete('/user/:username', requireLogin, userAPI.deleteUser);
     app.get('/user/:username', requireLogin, userAPI.getUser);
-    app.post('/user', requireLogin, userAPI.newUser);
-    app.get('/user', requireLogin, userAPI.users);
+    app.post('/user', userAPI.newUser);
+    app.get('/user', userAPI.getUsers);
 
 
     // Upload endpoint

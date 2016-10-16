@@ -1,14 +1,14 @@
-div(ng-init="bpC.getBlogPosts()")
+div(ng-init="bpsCtrl.getBlogPosts()")
 
-    div(ng-repeat="post in bpC.blogposts", class="ui segment", ng-cloak)
+    div(ng-repeat="post in bpsCtrl.blogposts", class="ui segment", ng-cloak)
         h3 [[post.blogtitle]]
         p [[post.updatedAt|date:'short']]
         div [[post.blogpost]]
         br
         p
-            button(class="ui green button mini", ng-click="bpC.viewPost(post.shortid)") View
+            button(class="ui green button mini", ng-click="bpsCtrl.viewPost(post.shortid)") View
             if session.user
-                button(class="ui red button mini", ng-click="bpC.selected(post.shortid)") Delete
+                button(class="ui red button mini", ng-click="bpsCtrl.selected(post.shortid)") Delete
         br
 
     div(class="ui basic modal deletePostModal")
@@ -21,7 +21,7 @@ div(ng-init="bpC.getBlogPosts()")
 
         div(class="actions")
             div(class="two fluid ui inverted buttons")
-                div(class="ui ok green basic inverted button" ng-click="bpC.deletePost(post.shortid)")
+                div(class="ui ok green basic inverted button" ng-click="bpsCtrl.deletePost(post.shortid)")
                     i(class="checkmark icon")
                 div(class="ui cancel red basic inverted button")
                     i(class="remove icon")

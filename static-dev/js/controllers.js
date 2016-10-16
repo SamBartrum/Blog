@@ -97,3 +97,31 @@ blogmodule.controller('loginController', ['$scope', 'LoginResource', function($s
     };
 
 }]);
+
+
+blogmodule.controller('usersController', ['$scope', 'UserResource', function($scope, UserResource){
+    var that = this;
+    that.users = [];
+    that.newUser = {username: '', password: ''};
+
+    that.getUsers = function(){
+        UserResource.get().$promise.then(function(data) {
+            that.users = data.users;
+        });
+    };
+
+    that.createUser = function(){
+        var userPost = new UserResource(that.newUser);
+        userPost.$save();
+        $('#createUserModal').modal('hide');
+        that.getUsers();
+    };
+
+    that.validateNewUser = function(){
+         if(!that.newUser.username.trim() || !that.newUser.password.trim()){
+            return true;
+        }
+        return false;
+    };
+
+}]);

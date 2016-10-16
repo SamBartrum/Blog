@@ -1,16 +1,23 @@
-User = require('../models/users')
+const User = require('../models/users');
+      bcrypt = require('bcrypt');
+      saltRounds = 10;
 
 exports = {}
 
 
 exports.login = function(req, res){
-                    User.findOne({username: req.body.username , password: req.body.password}).exec(function(err, user){
-                        if(!user){
-                            res.json({success: false});
+                    User.findOne({username: req.body.username}).exec(function(err, user){
+                        if(user){
+                            if(bcrypt.compareSync(req.body.password, user.password)){
+                                req.session.user = {username: user.username, admin: user.admin};
+                                res.json({success: true});
+                            }
+                            else{
+                                res.json({success: false, password: false});
+                            }
                         }
                         else{
-                            req.session.user = {username: user.username, admin: user.admin};
-                            res.json({success: true});
+                            res.json({success: false, user: false});
                         }
                     });
 };
@@ -21,14 +28,21 @@ exports.logout = function(req, res){
                     res.redirect('/');
 };
 
-exports.users = function(req, res){
-                    User.find({}).exec(function(err, users){
-                        res.json({users:users});
+exports.getUsers = function(req, res){
+                    User.find({}).sort([['username', 1]]).exec(function(err, users){
+                        userData = [];
+                        for(i=0; i<users.length; i++){
+                            userData.push({username: users[i].username, admin: users[i].admin});
+                        }
+                        res.json({users:userData});
                     });
 };
 
 exports.newUser = function(req, res){
-                      var user = new User(req.body);
+                      var userdata = req.body;
+                      var hash = bcrypt.hashSync(userdata.password, saltRounds);
+                      userdata.password = hash;
+                      var user = new User(userdata);
                       user.save();
                       res.json({'success': 'new user has been created'});
 };

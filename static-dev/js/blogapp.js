@@ -26,13 +26,13 @@ blogmodule.config(function($routeProvider) {
             .when('/', {
                 templateUrl : '/template/blogposts.jade',
                 controller  : 'blogpostsController',
-                controllerAs: 'bpC'
+                controllerAs: 'bpsCtrl'
             })
 
             .when('/blogpost/:postid', {
                 templateUrl: '/template/blogpost.jade',
                 controller: 'blogpostController',
-                controllerAs: 'bpostC'
+                controllerAs: 'bpCtrl'
             })
 
             .when('/newpost', {
@@ -41,10 +41,17 @@ blogmodule.config(function($routeProvider) {
                 controllerAs: 'npCtrl'
             })
 
+            .when('/users', {
+                templateUrl: '/template/users.jade',
+                controller: 'usersController',
+                controllerAs: 'uCtrl'
+            })
+
             // route for the about page
             .when('/login', {
                 templateUrl : 'login.html',
-                controller  : 'loginController'
+                controller  : 'loginController',
+                controllerAs: 'lCtrl'
             })
     });
 

@@ -1,7 +1,7 @@
-div(ng-init="bpostC.getBlogPost()")
+div(ng-init="bpCtrl.getBlogPost()")
 
      center(ng-cloak)
-        h2 [[ bpostC.blogpost.blogtitle ]]
-        p [[ bpostC.blogpost.updatedAt|date:'short' ]]
+        h2 [[ bpCtrl.blogpost.blogtitle ]]
+        p [[ bpCtrl.blogpost.updatedAt|date:'short' ]]
         br
-     p [[ bpostC.blogpost.blogpost ]]
+     p [[ bpCtrl.blogpost.blogpost ]]

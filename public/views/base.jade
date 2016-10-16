@@ -27,34 +27,36 @@ html
                             a(class="item" href="/logout") Logout
                         else
                             a(class="item" onclick="$('#loginModal').modal('show')") Login
-                        div(class="ui simple dropdown item" ) Menu
-                            i(class="dropdown icon")
-                            div(class="menu")
-                              a(class="item" href="#/newpost") Create a new post
-                              a(class="item" href="#") Non blog things
+                        if session.user
+                            div(class="ui simple dropdown item" ) Menu
+                                i(class="dropdown icon")
+                                div(class="menu")
+                                  a(class="item" href="#/newpost") Create a new post
+                                  a(class="item" href="#") Non blog things
+                                  a(class="item" href="#/users") Users
 
             div(class="ui text container segment", id='content')
                 div(ng-view)
 
 
-                div(class="ui small modal", id="loginModal" ng-controller="loginController as logC")
+                div(class="ui small modal", id="loginModal" ng-controller="loginController as lCtrl")
                     i(class="close icon")
                     div(class="header")
                         p Enter your login details
                     div(class="content")
 
-                        div(class="ui negative message" id="loginMessage" ng-show="logC.loggedIn==false")
-                            i(class="close icon", ng-click="logC.closeMessage()")
+                        div(class="ui negative message" id="loginMessage" ng-show="lCtrl.loggedIn==false")
+                            i(class="close icon", ng-click="lCtrl.closeMessage()")
                             div(class="header")
                                 p Woops, check your login details!
 
                         div(class="ui form")
                             div(class="field")
-                                input(type="text", name="username", placeholder="Username", ng-model="logC.login.username")
+                                input(type="text", name="username", placeholder="Username", ng-model="lCtrl.login.username")
                             div(class="field")
-                                input(type="text", name="password", placeholder="Password", ng-model="logC.login.password")
+                                input(type="text", name="password", placeholder="Password", ng-model="lCtrl.login.password")
 
-                            button(class="ui green button", ng-click="logC.authenticate()" ng-disabled="logC.validate()") Log in
+                            button(class="ui green button", ng-click="lCtrl.authenticate()" ng-disabled="lCtrl.validate()") Log in
 
 
             div(class="ui inverted footer segment", id="footer", style="position:absolute; bottom:0;")
