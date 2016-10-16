@@ -16,6 +16,9 @@ blogmodule.factory('LoginResource', ['$resource', function($resource){
     return $resource('/login');
 }]);
 
+blogmodule.factory('UserResource', ['$resource', function($resource){
+    return $resource('/user/:username', null);
+}]);
 
 blogmodule.config(function($routeProvider) {
         $routeProvider

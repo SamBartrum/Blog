@@ -1,5 +1,6 @@
 $basecolour: #333
 $titlefontsize: 20px
+$footerheight: 50px
 
 #homelink
     float: left
@@ -13,6 +14,23 @@ $titlefontsize: 20px
 #BlogTitle
     font-size: $titlefontsize
 
-#mainpanel
-    margin-top: 100px
-    width: 100%
+html,
+body
+	margin: 0px
+	padding: 0px
+	min-height: 100%
+
+#wrapper
+	min-height: 100%
+	position: relative
+
+#content
+	padding-bottom: $footerheight
+
+#footer
+	width: 100%
+	height: $footerheight
+	position: absolute
+	bottom: 0
+	left: 0
+	padding-bottom: 0

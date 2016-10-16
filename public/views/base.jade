@@ -16,37 +16,40 @@ html
 
     body(ng-app='blogmodule')
 
-        div(class="ui fixed inverted menu navbar")
-            div(class="ui center aligned container")
-                a(href="#/" class="header item" id="BlogTitle") Semi ignorant bloggings
-                div(class="right menu")
-                    i(class="dropdown icon")
-                    span(class="item" onclick="$('#loginModal').modal('show')") Login
-                    div(class="ui simple dropdown item" ) Menu
+        div(class="wrapper", id="wrapper")
+            div(class="ui fixed inverted menu navbar")
+                div(class="ui center aligned container")
+                    a(href="#/" class="header item" id="BlogTitle") Semi ignorant bloggings
+                    div(class="right menu")
                         i(class="dropdown icon")
-                        div(class="menu")
-                          a(class="item" href="#/newpost") Create a new post
-                          a(class="item" href="#") Non blog things
+                        span(class="item" onclick="$('#loginModal').modal('show')") Login
+                        div(class="ui simple dropdown item" ) Menu
+                            i(class="dropdown icon")
+                            div(class="menu")
+                              a(class="item" href="#/newpost") Create a new post
+                              a(class="item" href="#") Non blog things
 
-        div(class="ui text container segment", id='mainpanel')
-            div(ng-view)
-
-
-    div(class="ui small modal", id="loginModal" ng-controller="loginController as logC")
-        i(class="close icon")
-        div(class="header")
-            p Login!
-        div(class="image content")
-            div(class="ui form")
-                div(class="field")
-                    input(type="text", name="username", placeholder="Username", ng-model="logC.login.username")
-                div(class="field")
-                    input(type="text", name="password", placeholder="Password", ng-model="logC.login.password")
-
-                button(class="ui button", ng-click="logC.authenticate()") Log in
+            div(class="ui text container segment", id='content')
+                div(ng-view)
 
 
-    block footer
+                div(class="ui small modal", id="loginModal" ng-controller="loginController as logC")
+                    i(class="close icon")
+                    div(class="header")
+                        p Login!
+                    div(class="image content")
+                        div(class="ui form")
+                            div(class="field")
+                                input(type="text", name="username", placeholder="Username", ng-model="logC.login.username")
+                            div(class="field")
+                                input(type="text", name="password", placeholder="Password", ng-model="logC.login.password")
+
+                            button(class="ui button", ng-click="logC.authenticate()") Log in
+
+
+            div(class="ui inverted footer segment", id="footer", style="position:absolute; bottom:0;")
+                div(class="ui container")
+                    Blog footer - put links to things in here
 
 
 
