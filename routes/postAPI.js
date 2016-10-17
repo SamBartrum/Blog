@@ -23,7 +23,7 @@ exports.createPost = function(req, res){
 };
 
 exports.deletePost = function(req, res){
-                        shortid = req.params.shortid
+                        shortid = req.params.shortid;
                         BlogPost.find({shortid: shortid}).remove().exec(function(err, post){
                             res.json({'success': 'Your post has been deleted'})
                         });

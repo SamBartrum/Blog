@@ -6,10 +6,10 @@ const randomName = require('node-random-name');
       loremIpsum = require('lorem-ipsum');
       BlogPosts = require('./models/blogpost');
       User = require('./models/users');
-
-const mongoose = require('mongoose');
+      mongoose = require('mongoose');
       mongoose.Promise = require('bluebird');
       config = require('./config');
+      bcrypt = require('bcrypt');
 
 // Connect to the mongodDB
 mongoose.connect(config.DB_URL.development)
@@ -19,7 +19,8 @@ var inserted = 0;
 // Generate some users
 var genUsers = function(num){
                     for(var i=0; i<num; i++){
-                        var user = new User({username: randomName() , password: Math.random()});
+                        password = bcrypt.hashSync(Math.random().toString(36).substring(7), config.SALT_ROUNDS);
+                        var user = new User({username: randomName() , password:  password});
                         user.save(function(err){
                             if(err){
                                 console.log(err);
@@ -60,3 +61,7 @@ const postcount = 10;
 genUsers(usercount);
 genPosts(postcount);
 
+// Stick a default user in with known password
+password = bcrypt.hashSync('123', config.SALT_ROUNDS);
+var me = new User({username: 'sam', password: password})
+me.save()

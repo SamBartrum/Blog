@@ -12,6 +12,8 @@ module.exports = {
 
     STATIC: path.join(__dirname, 'public'),
     STATIC_IMPORTS: path.join(__dirname, 'node_modules'),
-    SEMANTIC: path.join(__dirname, 'semantic/dist')
+    SEMANTIC: path.join(__dirname, 'semantic/dist'),
+
+    SALT_ROUNDS: 10
 
 }

@@ -6,7 +6,7 @@ const templates = '../public/views'
 
 // Check whether user is loged in or not - protect the endpoints
 function requireLogin(req, res, next) {
-  if (!req.user) {
+  if (!req.session.user) {
     res.redirect('/');
   } else {
     next();
@@ -40,8 +40,8 @@ module.exports = function(app){
     app.get('/logout', userAPI.logout);
     app.delete('/user/:username', requireLogin, userAPI.deleteUser);
     app.get('/user/:username', requireLogin, userAPI.getUser);
-    app.post('/user', userAPI.newUser);
-    app.get('/user', userAPI.getUsers);
+    app.post('/user', requireLogin, userAPI.newUser);
+    app.get('/user', requireLogin, userAPI.getUsers);
 
 
     // Upload endpoint

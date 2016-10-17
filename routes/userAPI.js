@@ -1,6 +1,6 @@
 const User = require('../models/users');
       bcrypt = require('bcrypt');
-      saltRounds = 10;
+      config = require('../config');
 
 exports = {}
 
@@ -40,7 +40,7 @@ exports.getUsers = function(req, res){
 
 exports.newUser = function(req, res){
                       var userdata = req.body;
-                      var hash = bcrypt.hashSync(userdata.password, saltRounds);
+                      var hash = bcrypt.hashSync(userdata.password, config.SALT_ROUNDS);
                       userdata.password = hash;
                       var user = new User(userdata);
                       user.save();
