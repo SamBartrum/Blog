@@ -25,7 +25,7 @@ module.exports = function(app){
     // TODO: Handle template not existing. Search the directory first - maybe control the templates that can be sent back
     app.get('/template/:name', function(req, res) {
         var name = req.params.name;
-        res.render(templates + '/' + name);
+        res.render(templates + '/pages/' + name);
     });
 
     // The blog post api endpoints
