@@ -4,20 +4,25 @@ const User = require('../models/users');
 
 exports = {}
 
+// Compare the passwords
+var checkPassword = function(user, passwordA, passwordB){
+    if(bcrypt.compareSync(passwordA, passwordB)){
+        return {success: true};
+    }
+    else{
+        return {success: false, password: false};
+    }
+};
+
 
 exports.login = function(req, res){
                     User.findOne({username: req.body.username}).exec(function(err, user){
                         if(user){
-                            if(bcrypt.compareSync(req.body.password, user.password)){
-                                req.session.user = {username: user.username, admin: user.admin};
-                                res.json({success: true});
-                            }
-                            else{
-                                res.json({success: false, password: false});
-                            }
+                            req.session.user = {username: user.username, admin: user.admin};
+                            res.json(checkPassword(user, req.body.password, user.password));
                         }
                         else{
-                            res.json({success: false, user: false});
+                            res.json({success: false, user: false})
                         }
                     });
 };

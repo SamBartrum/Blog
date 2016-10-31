@@ -1,3 +1,4 @@
+include ../mixins/modalmixins
 
 div(ng-controller="newpostController as npCtrl")
 
@@ -23,13 +24,4 @@ div(ng-controller="newpostController as npCtrl")
             button(type="submit", class="ui button") Upload media
 
 
-div(class="ui basic modal", id="successModal")
-    i(class="close icon")
-    div(class="header")
-        p Success!
-    div(class="image content")
-        div(class="description")
-            p The post has been saved!
-
-
-
+    mixin successModal()

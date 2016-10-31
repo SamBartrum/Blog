@@ -9,18 +9,9 @@ div(ng-init="uCtrl.getUsers()")
         p Admin: [[ user.admin ]]
         button(class="ui red button mini", ng-click="uCtrl.selected(user._id)") Delete
 
-    div(class="ui small modal", id="createUserModal")
-        i(class="close icon")
-        div(class="header")
-            p Enter the new users details
-        div(class="content")
-            div(class="ui form")
-                div(class="field")
-                    input(type="text", name="username", placeholder="Username", ng-model="uCtrl.newUser.username")
-                div(class="field")
-                    input(type="text", name="password", placeholder="Password", ng-model="uCtrl.newUser.password")
 
-                button(class="ui green button", ng-click="uCtrl.createUser()" ng-disabled="uCtrl.validateNewUser()") Create
 
+
+    mixin createUserModal()
 
     mixin deleteModal('user', 'uCtrl.deleteUser()')

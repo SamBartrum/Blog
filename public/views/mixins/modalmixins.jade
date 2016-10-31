@@ -14,3 +14,32 @@ mixin deleteModal(type, deletefunction)
                     i(class="checkmark icon")
                 div(class="ui cancel red basic inverted button")
                     i(class="remove icon")
+
+
+mixin createUserModal()
+
+    div(class="ui small modal", id="createUserModal")
+        i(class="close icon")
+        div(class="header")
+            p Enter the new users details
+        div(class="content")
+            div(class="ui form")
+                div(class="field")
+                    input(type="text", name="username", placeholder="Username", ng-model="uCtrl.newUser.username")
+                div(class="field")
+                    input(type="text", name="password", placeholder="Password", ng-model="uCtrl.newUser.password")
+
+                button(class="ui green button", ng-click="uCtrl.createUser()" ng-disabled="uCtrl.validateNewUser()") Create
+
+
+mixin successModal()
+
+    div(class="ui basic modal", id="successModal")
+        i(class="close icon")
+        div(class="header")
+            p Success!
+        div(class="image content")
+            div(class="description")
+                p The post has been saved!
+
+
