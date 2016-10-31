@@ -38,7 +38,7 @@ module.exports = function(app){
     // User api endpoints
     app.post('/login', userAPI.login);
     app.get('/logout', userAPI.logout);
-    app.delete('/user/:username', requireLogin, userAPI.deleteUser);
+    app.delete('/user/:id', requireLogin, userAPI.deleteUser);
     app.get('/user/:username', requireLogin, userAPI.getUser);
     app.post('/user', requireLogin, userAPI.newUser);
     app.get('/user', requireLogin, userAPI.getUsers);

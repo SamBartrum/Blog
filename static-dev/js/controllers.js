@@ -103,6 +103,7 @@ blogmodule.controller('usersController', ['$scope', 'UserResource', function($sc
     var that = this;
     that.users = [];
     that.newUser = {username: '', password: ''};
+    that.selectedUserID = null;
 
     that.getUsers = function(){
         UserResource.get().$promise.then(function(data) {
@@ -124,4 +125,14 @@ blogmodule.controller('usersController', ['$scope', 'UserResource', function($sc
         return false;
     };
 
+    that.selected = function(id){
+        that.selectedUserID = id;
+        $('.deleteUserModal').modal('show');
+    };
+
+    that.deleteUser = function(){
+        UserResource.delete({id: that.selectedUserID}).$promise.then(function(data){
+            that.getUsers();
+        });
+    };
 }]);

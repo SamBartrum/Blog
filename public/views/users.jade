@@ -5,6 +5,7 @@ div(ng-init="uCtrl.getUsers()")
     div(ng-repeat="user in uCtrl.users", class="ui segment", ng-cloak)
         h2 [[ user.username ]]
         p Admin: [[ user.admin ]]
+        button(class="ui red button mini", ng-click="uCtrl.selected(user._id)") Delete
 
     div(class="ui small modal", id="createUserModal")
         i(class="close icon")
@@ -18,3 +19,20 @@ div(ng-init="uCtrl.getUsers()")
                     input(type="text", name="password", placeholder="Password", ng-model="uCtrl.newUser.password")
 
                 button(class="ui green button", ng-click="uCtrl.createUser()" ng-disabled="uCtrl.validateNewUser()") Create
+
+
+    div(class="ui basic modal deleteUserModal")
+        i(class="close icon")
+        div(class="header")
+            Delete blog post
+        div(class="image content")
+            div(class="description")
+                p Are you sure you want to delete this user?
+
+        div(class="actions")
+            div(class="two fluid ui inverted buttons")
+                div(class="ui ok green basic inverted button" ng-click="uCtrl.deleteUser()")
+                    i(class="checkmark icon")
+                div(class="ui cancel red basic inverted button")
+                    i(class="remove icon")
+

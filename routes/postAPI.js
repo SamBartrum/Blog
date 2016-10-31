@@ -5,7 +5,7 @@ exports = {};
 
 exports.getPosts = function(req, res){
                         BlogPost.find({}).sort([['shortid', -1]]).exec(function (err, posts){
-                        res.json({posts: posts});
+                            res.json({posts: posts});
                     });
 };
 

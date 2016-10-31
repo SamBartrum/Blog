@@ -30,11 +30,7 @@ exports.logout = function(req, res){
 
 exports.getUsers = function(req, res){
                     User.find({}).sort([['username', 1]]).exec(function(err, users){
-                        userData = [];
-                        for(i=0; i<users.length; i++){
-                            userData.push({username: users[i].username, admin: users[i].admin});
-                        }
-                        res.json({users:userData});
+                        res.json({users:users});
                     });
 };
 
@@ -54,7 +50,7 @@ exports.getUser = function(req, res){
 };
 
 exports.deleteUser = function(req, res){
-                        User.find({username: req.parmas.username}).remove().exec(function(err, post){
+                        User.find({_id: req.params.id}).remove().exec(function(err, post){
                             res.json({'success': 'User has been deleted'});
                         });
 };

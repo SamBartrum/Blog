@@ -34,7 +34,7 @@ describe('EndPoints', function() {
 
   it('testing the /posts endpoint - should return all blog posts', function(done){
     chai.request(server)
-    .get('/posts')
+    .get('/post')
     .end(function(err, res){
         res.should.have.status(200);
         done();
@@ -43,7 +43,7 @@ describe('EndPoints', function() {
 
   it('testing the /savepost - should save a blog post', function(done){
     chai.request(server)
-    .post('/savepost')
+    .post('/post')
     .send({'blogtitle': 'test title', 'blogpost': 'THIS IS SOME TEST CONTENT'})
     .end(function(err, res){
         res.should.have.status(200);
