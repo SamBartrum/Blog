@@ -18,12 +18,13 @@ blogmodule.controller('blogpostsController', ['$scope', '$http', 'PostResource',
 
     that.selected = function(postid){
         that.selectedpost = postid;
-        $('.deletePostModal').modal('show');
+        $('.deleteModal').modal('show');
     };
 
     that.deletePost = function(){
         PostResource.delete({shortid: that.selectedpost}).$promise.then(function(data){
             that.getBlogPosts();
+            $('.deleteModal').modal('hide');
         });
     };
 
@@ -127,12 +128,13 @@ blogmodule.controller('usersController', ['$scope', 'UserResource', function($sc
 
     that.selected = function(id){
         that.selectedUserID = id;
-        $('.deleteUserModal').modal('show');
+        $('.deleteModal').modal('show');
     };
 
     that.deleteUser = function(){
         UserResource.delete({id: that.selectedUserID}).$promise.then(function(data){
             that.getUsers();
+            $('.deleteModal').modal('hide');
         });
     };
 }]);

@@ -1,0 +1,16 @@
+mixin deleteModal(type, deletefunction)
+
+    div(class="ui basic modal deleteModal")
+        i(class="close icon")
+        div(class="header")
+            Delete blog post
+        div(class="image content")
+            div(class="description")
+                p Are you sure you want to delete this #{type}?
+
+        div(class="actions")
+            div(class="two fluid ui inverted buttons")
+                div(class="ui ok green basic inverted button" ng-click="#{deletefunction}")
+                    i(class="checkmark icon")
+                div(class="ui cancel red basic inverted button")
+                    i(class="remove icon")

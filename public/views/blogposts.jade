@@ -1,3 +1,5 @@
+include mixins/modalmixins
+
 div(ng-init="bpsCtrl.getBlogPosts()")
 
     div(ng-repeat="post in bpsCtrl.blogposts", class="ui segment", ng-cloak)
@@ -11,18 +13,6 @@ div(ng-init="bpsCtrl.getBlogPosts()")
                 button(class="ui red button mini", ng-click="bpsCtrl.selected(post.shortid)") Delete
         br
 
-    div(class="ui basic modal deletePostModal")
-        i(class="close icon")
-        div(class="header")
-            Delete blog post
-        div(class="image content")
-            div(class="description")
-                p Are you sure you want to delete this blog post?
+    mixin deleteModal('blog post', 'bpsCtrl.deletePost()')
 
-        div(class="actions")
-            div(class="two fluid ui inverted buttons")
-                div(class="ui ok green basic inverted button" ng-click="bpsCtrl.deletePost()")
-                    i(class="checkmark icon")
-                div(class="ui cancel red basic inverted button")
-                    i(class="remove icon")
 
