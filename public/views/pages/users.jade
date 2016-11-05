@@ -5,9 +5,8 @@ div(ng-init="uCtrl.getUsers()")
     button(class="ui green button" onclick="$('#createUserModal').modal('show')") Create User
 
     div(ng-repeat="user in uCtrl.users", class="ui segment", ng-cloak)
-        h2 [[ user.username ]]
+        h2 [[ user.username ]]  <i class="fa fa-trash-o" aria-hidden="true" ng-click="uCtrl.selected(user._id)" style="cursor:pointer; float:right;"></i>
         p Admin: [[ user.admin ]]
-        button(class="ui red button mini", ng-click="uCtrl.selected(user._id)") Delete
 
 
 

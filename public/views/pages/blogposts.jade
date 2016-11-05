@@ -3,14 +3,13 @@ include ../mixins/modalmixins
 div(ng-init="bpsCtrl.getBlogPosts()")
 
     div(ng-repeat="post in bpsCtrl.blogposts", class="ui segment", ng-cloak)
-        h3 [[post.blogtitle]]
+        h3(ng-click="bpsCtrl.viewPost(post.shortid)" style="cursor:pointer;") [[post.blogtitle]]
         p [[post.updatedAt|date:'short']]
         div [[post.blogpost]]
         br
         p
-            button(class="ui green button mini", ng-click="bpsCtrl.viewPost(post.shortid)") View
             if session.user
-                button(class="ui red button mini", ng-click="bpsCtrl.selected(post.shortid)") Delete
+                <i class="fa fa-2x fa-trash-o" aria-hidden="true" ng-click="bpsCtrl.selected(post.shortid)" style="cursor:pointer; float:right;"></i>
         br
 
     mixin deleteModal('blog post', 'bpsCtrl.deletePost()')
