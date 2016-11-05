@@ -138,3 +138,11 @@ blogmodule.controller('usersController', ['$scope', 'UserResource', function($sc
         });
     };
 }]);
+
+
+blogmodule.controller('uploadsController', ['$scope', function($scope){
+    var that = this;
+
+    console.log('hi');
+
+}]);

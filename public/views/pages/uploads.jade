@@ -1,0 +1,7 @@
+center
+    h2 File uploads
+
+br
+form(action="/upload", method="post", enctype="multipart/form-data")
+    input(type="file", name="media", class="ui")
+    button(type="submit", class="ui button") Upload media

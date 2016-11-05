@@ -47,11 +47,10 @@ blogmodule.config(function($routeProvider) {
                 controllerAs: 'uCtrl'
             })
 
-            // route for the about page
-            .when('/login', {
-                templateUrl : 'login.html',
-                controller  : 'loginController',
-                controllerAs: 'lCtrl'
+            .when('/uploads', {
+                templateUrl: '/template/uploads.jade',
+                controller: 'uploadsController',
+                controllerAs: 'uCtrl'
             })
     });
 
