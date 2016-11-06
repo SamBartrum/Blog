@@ -58,7 +58,7 @@ require('./routes/routes')(app);
 app.use(express.static(config.STATIC));
 
 //Stuff we are importing - ship only what we need
-const staticToServe = ['angular/', 'angular-resource/', 'angular-route/', 'jquery/dist/', 'font-awesome/'];
+const staticToServe = ['angular/', 'angular-resource/', 'angular-route/', 'jquery/dist/', 'font-awesome/', 'ng-file-upload/dist/'];
 for(var i=0; i<staticToServe.length; i++){
     app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, staticToServe[i])));
 }

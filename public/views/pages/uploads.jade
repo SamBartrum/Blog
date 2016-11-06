@@ -2,6 +2,11 @@ center
     h2 File uploads
 
 br
-form(action="/upload", method="post", enctype="multipart/form-data")
-    input(type="file", name="media", class="ui")
-    button(type="submit", class="ui button") Upload media
+
+button(class="ui button" type="file" ngf-select="uCtrl.uploadFile($file, $invalidFiles)" ngf-max-height="1000" ngf-max-size="1MB") Upload media
+br
+
+div(class="ui positive message" id="loginMessage" ng-show="uCtrl.uploadsuccess")
+    i(class="close icon", ng-click="lCtrl.closeMessage()")
+    div(class="header")
+        p File uploaded!

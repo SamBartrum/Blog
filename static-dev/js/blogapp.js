@@ -1,4 +1,4 @@
-var blogmodule = angular.module('blogmodule', ['ngResource', 'ngRoute']);
+var blogmodule = angular.module('blogmodule', ['ngResource', 'ngRoute', 'ngFileUpload']);
 
 //Change the interpolation symbol to make it obviously distinct from any other template rendering
 blogmodule.config(function($interpolateProvider) {

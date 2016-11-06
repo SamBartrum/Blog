@@ -140,9 +140,24 @@ blogmodule.controller('usersController', ['$scope', 'UserResource', function($sc
 }]);
 
 
-blogmodule.controller('uploadsController', ['$scope', function($scope){
-    var that = this;
+blogmodule.controller('uploadsController', ['$scope', 'Upload', function($scope, Upload){
+   var that = this;
+   that.uploadsuccess = false;
 
-    console.log('hi');
+   that.uploadFile = function(file, errFiles) {
+        that.f = file;
+        that.errFile = errFiles && errFiles[0];
+        if (file) {
+            file.upload = Upload.upload({
+                url: '/upload',
+                headers : { 'Content-Type': 'multipart/form-data'},
+                data: {media: file}
+            });
 
+            file.upload.then(function (response) {
+                that.uploadsuccess = true;
+                console.log(response)
+            })
+        }
+    }
 }]);

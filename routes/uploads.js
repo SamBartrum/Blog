@@ -1,19 +1,21 @@
 const multer = require('multer')
+      config = require('../config')
 
 var storage = multer.diskStorage({
-                destination: config.UPLOAD_DIRECTORY,
-                filename: function ( req, file, cb ) {
-                    cb( null, file.originalname );
-                }
-            });
+  destination: config.UPLOAD_DIRECTORY,
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
 
-const uploading = multer({ storage: storage });
+const upload = multer({storage: storage});
 
 exports = {};
 
-exports.uploadFile = {options: uploading.single('media'),
+exports.uploadFile = {options: upload.single('media'),
                       method: function(req, res, next){
-                        res.status(204).end()}
+                        res.json({'success': true})
+                        }
                       }
 
 
