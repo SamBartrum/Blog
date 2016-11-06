@@ -14,6 +14,8 @@ module.exports = {
     STATIC_IMPORTS: path.join(__dirname, 'node_modules'),
     SEMANTIC: path.join(__dirname, 'semantic/dist'),
 
-    SALT_ROUNDS: 10
+    SALT_ROUNDS: 10,
+
+    UPLOAD_DIRECTORY: 'public/static/uploads/'
 
 }

@@ -1,7 +1,7 @@
 const multer = require('multer')
 
 var storage = multer.diskStorage({
-                destination: '../public/static/uploads/',
+                destination: config.UPLOAD_DIRECTORY,
                 filename: function ( req, file, cb ) {
                     cb( null, file.originalname );
                 }
@@ -9,13 +9,12 @@ var storage = multer.diskStorage({
 
 const uploading = multer({ storage: storage });
 
-module.exports = {
+exports = {};
 
-    uploadFile: {options: uploading.single('media'),
-                 method: function(req, res, next){
+exports.uploadFile = {options: uploading.single('media'),
+                      method: function(req, res, next){
                         res.status(204).end()}
-                }
-}
+                      }
 
 
-
+module.exports = exports;

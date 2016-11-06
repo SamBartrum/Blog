@@ -4,7 +4,7 @@ const postAPI = require('./postAPI');
 
 const templates = '../public/views'
 
-// Check whether user is loged in or not - protect the endpoints
+// Check whether user is logged in or not - protect the endpoints
 function requireLogin(req, res, next) {
   if (!req.session.user) {
     res.redirect('/');
