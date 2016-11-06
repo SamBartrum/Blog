@@ -1,9 +1,15 @@
-center
+center(ng-init="uCtrl.getUploads()")
     h2 File uploads
 
+div(ng-repeat="upload in uCtrl.uploads")
+    figure
+        img(ng-src='[[upload.URI]]' style="height:100px; width:100px;")
+        figcaption [[upload.name]]
 br
 
-button(class="ui button" type="file" ngf-select="uCtrl.uploadFile($file, $invalidFiles)" ngf-max-height="1000" ngf-max-size="1MB") Upload media
+
+
+button(class="ui button" type="file" ngf-select="uCtrl.uploadFile($file, $invalidFiles)" ngf-max-size="10MB") Upload media
 br
 
 div(class="ui positive message" id="loginMessage" ng-show="uCtrl.uploadsuccess")

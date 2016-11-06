@@ -63,6 +63,7 @@ for(var i=0; i<staticToServe.length; i++){
     app.use('/static2', express.static(path.join(config.STATIC_IMPORTS, staticToServe[i])));
 }
 app.use('/static2', express.static(config.SEMANTIC));
+app.use('/uploads', express.static(config.UPLOAD_DIRECTORY));
 
 
 var server = app.listen(config.SERVER_PORT, () => {

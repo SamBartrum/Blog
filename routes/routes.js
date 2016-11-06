@@ -46,4 +46,5 @@ module.exports = function(app){
 
     // Upload endpoint
     app.post('/upload', uploads.uploadFile.options, uploads.uploadFile.method);
+    app.get('/uploads', uploads.getUploads);
 }

@@ -140,9 +140,10 @@ blogmodule.controller('usersController', ['$scope', 'UserResource', function($sc
 }]);
 
 
-blogmodule.controller('uploadsController', ['$scope', 'Upload', function($scope, Upload){
+blogmodule.controller('uploadsController', ['$scope', 'Upload', 'UploadsResource', function($scope, Upload, UploadsResource){
    var that = this;
    that.uploadsuccess = false;
+   that.uploads = [];
 
    that.uploadFile = function(file, errFiles) {
         that.f = file;
@@ -156,8 +157,15 @@ blogmodule.controller('uploadsController', ['$scope', 'Upload', function($scope,
 
             file.upload.then(function (response) {
                 that.uploadsuccess = true;
-                console.log(response)
+                that.getUploads();
             })
         }
-    }
+    };
+
+    that.getUploads = function(){
+        UploadsResource.get().$promise.then(function(data){
+            that.uploads = data.files;
+        })
+
+    };
 }]);

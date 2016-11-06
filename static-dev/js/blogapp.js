@@ -20,6 +20,11 @@ blogmodule.factory('UserResource', ['$resource', function($resource){
     return $resource('/user/:id', null);
 }]);
 
+blogmodule.factory('UploadsResource', ['$resource', function($resource){
+    return $resource('/uploads');
+}]);
+
+
 blogmodule.config(function($routeProvider) {
         $routeProvider
             // route for the home page
